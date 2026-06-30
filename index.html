@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ourview.io — AI That Runs Your Business</title>
+  <meta name="description" content="Missed calls texted back in seconds. Reviews answered automatically. 24/7 AI chat on your website. DMs replied to instantly. All for less than one day of payroll." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0a;
+      --white: #ffffff;
+      --purple: #6C63FF;
+      --purple-light: #a78bfa;
+      --purple-dim: rgba(108,99,255,0.15);
+      --purple-border: rgba(108,99,255,0.35);
+      --gray: #888;
+      --gray-light: #aaa;
+      --border: rgba(255,255,255,0.08);
+      --card: rgba(255,255,255,0.04);
+      --green: #4ade80;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(10,10,10,0.9);
+      backdrop-filter: blur(16px);
+      z-index: 100;
+    }
+    .logo { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; text-decoration: none; color: var(--white); }
+    .logo span { color: var(--purple); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: var(--gray-light); text-decoration: none; font-size: 14px; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      background: linear-gradient(135deg, #6C63FF, #8B85FF);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+    @media (max-width: 640px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 90px 24px 60px;
+      text-align: center;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--purple-light);
+      background: var(--purple-dim);
+      border: 1px solid var(--purple-border);
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+    }
+    .eyebrow-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:.3; } }
+    h1 {
+      font-size: clamp(40px, 7vw, 72px);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -2.5px;
+      margin-bottom: 24px;
+    }
+    h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, #6C63FF, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 19px;
+      color: var(--gray-light);
+      max-width: 600px;
+      margin: 0 auto 36px;
+      line-height: 1.6;
+    }
+    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: linear-gradient(135deg, #6C63FF, #8B85FF);
+      color: white;
+      padding: 14px 28px;
+      border-radius: 100px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: opacity .2s, transform .2s;
+    }
+    .btn-primary:hover { opacity: .88; transform: translateY(-1px); }
+    .btn-ghost {
+      color: var(--gray-light);
+      padding: 14px 28px;
+      border-radius: 100px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      transition: border-color .2s, color .2s;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.25); color: var(--white); }
+    .hero-note {
+      margin-top: 16px;
+      font-size: 13px;
+      color: var(--gray);
+    }
+    .hero-note strong { color: var(--green); }
+
+    /* ── SOCIAL PROOF BAR ── */
+    .proof-bar {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 24px;
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    .proof-stat { text-align: center; }
+    .proof-stat strong { display: block; font-size: 28px; font-weight: 800; color: var(--purple-light); letter-spacing: -1px; }
+    .proof-stat span { font-size: 12px; color: var(--gray); text-transform: uppercase; letter-spacing: 0.06em; }
+
+    /* ── SECTION HEADER ── */
+    .section { max-width: 1000px; margin: 0 auto; padding: 80px 24px; }
+    .section-eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--purple-light);
+      background: var(--purple-dim);
+      border: 1px solid var(--purple-border);
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    .section-sub {
+      font-size: 17px;
+      color: var(--gray-light);
+      max-width: 520px;
+      margin-bottom: 48px;
+    }
+
+    /* ── FEATURES ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 20px;
+    }
+    .feature-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px 24px;
+      transition: border-color .2s;
+    }
+    .feature-card:hover { border-color: var(--purple-border); }
+    .feature-icon {
+      width: 44px; height: 44px;
+      background: var(--purple-dim);
+      border: 1px solid var(--purple-border);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+    .feature-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .feature-card p { font-size: 14px; color: var(--gray); line-height: 1.6; }
+    .feature-tag {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--purple-light);
+      background: var(--purple-dim);
+      border: 1px solid var(--purple-border);
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .how-step {
+      padding: 32px 28px;
+      border-right: 1px solid var(--border);
+      position: relative;
+    }
+    .how-step:last-child { border-right: none; }
+    .step-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--purple-light);
+      margin-bottom: 12px;
+    }
+    .how-step h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .how-step p { font-size: 14px; color: var(--gray); line-height: 1.6; }
+    @media (max-width: 640px) {
+      .how-grid { grid-template-columns: 1fr; }
+      .how-step { border-right: none; border-bottom: 1px solid var(--border); }
+      .how-step:last-child { border-bottom: none; }
+    }
+
+    /* ── PROBLEM/SOLUTION ── */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 640px) { .compare-grid { grid-template-columns: 1fr; } }
+    .compare-card {
+      border-radius: 20px;
+      padding: 28px 24px;
+    }
+    .compare-card.before {
+      background: rgba(239,68,68,0.05);
+      border: 1px solid rgba(239,68,68,0.2);
+    }
+    .compare-card.after {
+      background: rgba(108,99,255,0.06);
+      border: 1px solid var(--purple-border);
+    }
+    .compare-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .compare-card.before .compare-label { color: #f87171; }
+    .compare-card.after .compare-label { color: var(--purple-light); }
+    .compare-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 14px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .compare-item .icon { flex-shrink: 0; margin-top: 2px; font-size: 15px; }
+
+    /* ── STATS ── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .stat-card strong { display: block; font-size: 52px; font-weight: 800; letter-spacing: -2px; color: var(--purple-light); margin-bottom: 8px; }
+    .stat-card p { font-size: 14px; color: var(--gray); line-height: 1.5; }
+
+    /* ── PRICING ── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .plan {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px 24px;
+      position: relative;
+    }
+    .plan.featured {
+      border-color: var(--purple-border);
+      background: rgba(108,99,255,0.07);
+    }
+    .featured-badge {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #6C63FF, #8B85FF);
+      color: white;
+      padding: 4px 16px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+    .plan-name { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--purple-light); margin-bottom: 16px; }
+    .plan-original { font-size: 13px; color: #555; text-decoration: line-through; margin-bottom: 4px; }
+    .plan-price { font-size: 44px; font-weight: 800; letter-spacing: -2px; line-height: 1; }
+    .plan-price sup { font-size: 20px; vertical-align: top; margin-top: 8px; }
+    .plan-price span { font-size: 15px; font-weight: 400; color: var(--gray); }
+    .savings {
+      display: inline-block;
+      font-size: 12px; font-weight: 600;
+      background: rgba(74,222,128,0.1);
+      color: var(--green);
+      border: 1px solid rgba(74,222,128,0.25);
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-top: 10px;
+    }
+    .plan-divider { height: 1px; background: var(--border); margin: 20px 0; }
+    .plan-features { list-style: none; }
+    .plan-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--gray-light);
+      margin-bottom: 10px;
+    }
+    .plan-features li::before { content: "✓"; color: var(--green); font-weight: 700; flex-shrink: 0; }
+    .plan-btn {
+      display: block;
+      margin-top: 24px;
+      text-align: center;
+      padding: 12px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+    .plan.featured .plan-btn {
+      background: linear-gradient(135deg, #6C63FF, #8B85FF);
+      color: white;
+    }
+    .plan:not(.featured) .plan-btn {
+      border: 1px solid var(--border);
+      color: var(--white);
+    }
+    .plan-btn:hover { opacity: .82; }
+
+    /* ── FAQ ── */
+    .faq-list { max-width: 700px; }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 24px 0;
+    }
+    .faq-item:first-child { border-top: 1px solid var(--border); }
+    .faq-q {
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      user-select: none;
+    }
+    .faq-q::after { content: "+"; font-size: 22px; color: var(--purple-light); flex-shrink: 0; transition: transform .2s; }
+    .faq-item.open .faq-q::after { transform: rotate(45deg); }
+    .faq-a {
+      font-size: 15px;
+      color: var(--gray-light);
+      line-height: 1.7;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .3s ease, padding .3s ease;
+    }
+    .faq-item.open .faq-a { max-height: 400px; padding-top: 14px; }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 80px 24px;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .cta-section p { font-size: 17px; color: var(--gray-light); margin-bottom: 32px; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 36px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    footer p { font-size: 13px; color: var(--gray); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 13px; color: var(--gray); text-decoration: none; }
+    .footer-links a:hover { color: var(--white); }
+
+    /* divider lines */
+    hr.section-sep { border: none; border-top: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">our<span>view</span>.io</a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how-it-works">How it works</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="https://ourview-earlyaccess.netlify.app" class="nav-cta">Get Early Access</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow"><span class="eyebrow-dot"></span> Early Access Open — 20% Off For Life</div>
+  <h1>Your business,<br><em>running itself.</em></h1>
+  <p class="hero-sub">AI that texts back missed calls, responds to reviews, answers your website visitors, and replies to DMs — 24 hours a day, automatically.</p>
+  <div class="hero-actions">
+    <a href="https://ourview-earlyaccess.netlify.app" class="btn-primary">Get Early Access →</a>
+    <a href="#features" class="btn-ghost">See how it works</a>
+  </div>
+  <p class="hero-note">No payment required to join. <strong>Lock in 20% off for life.</strong></p>
+</section>
+
+<!-- PROOF BAR -->
+<div class="proof-bar">
+  <div class="proof-stat"><strong>&lt;4s</strong><span>Text-back speed</span></div>
+  <div class="proof-stat"><strong>24/7</strong><span>Always on</span></div>
+  <div class="proof-stat"><strong>100%</strong><span>Reply rate</span></div>
+  <div class="proof-stat"><strong>$77.60</strong><span>Starting price</span></div>
+</div>
+
+<hr class="section-sep">
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="section-eyebrow">What we do</div>
+  <h2 class="section-title">Every way you're losing leads,<br>automated.</h2>
+  <p class="section-sub">Five tools. One platform. Zero staff required.</p>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">📞</div>
+      <h3>Missed Call Text-Back</h3>
+      <p>Every missed call triggers an automatic text to the caller within 4 seconds. They stay engaged, you never lose the lead — even at 2am on a Sunday.</p>
+      <span class="feature-tag">All plans</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⭐</div>
+      <h3>Review Management</h3>
+      <p>New Google or Yelp review? AI drafts a professional, personalized response and posts it instantly. Your reputation stays active and healthy on autopilot.</p>
+      <span class="feature-tag">Growth + Pro</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💬</div>
+      <h3>24/7 Website Chat</h3>
+      <p>An AI chat widget on your website that answers questions, captures leads, and qualifies visitors — around the clock, even when you're off the clock.</p>
+      <span class="feature-tag">All plans</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📲</div>
+      <h3>Automated DM Responses</h3>
+      <p>Instagram and TikTok DMs answered the moment they arrive. Price questions, hours, bookings — handled automatically so no lead goes cold.</p>
+      <span class="feature-tag">Growth + Pro</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h3>Monthly Performance Reports</h3>
+      <p>On the 1st of every month, a full report lands in your inbox: calls recovered, reviews responded to, leads captured, DMs answered. Full clarity, zero effort.</p>
+      <span class="feature-tag">Pro</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎯</div>
+      <h3>Review Request Campaigns</h3>
+      <p>Text your happy customers asking for a Google review. More reviews, higher ratings, better ranking — sent automatically after every job.</p>
+      <span class="feature-tag">Pro</span>
+    </div>
+  </div>
+</section>
+
+<hr class="section-sep">
+
+<!-- BEFORE / AFTER -->
+<section class="section">
+  <div class="section-eyebrow">Before vs. after</div>
+  <h2 class="section-title">What changes when you run<br>on ourview.</h2>
+  <p class="section-sub" style="margin-bottom: 36px;">Most businesses are hemorrhaging leads through the same five holes.</p>
+  <div class="compare-grid">
+    <div class="compare-card before">
+      <div class="compare-label">Without ourview</div>
+      <div class="compare-item"><span class="icon">✗</span> Missed calls go to voicemail. Lead calls your competitor.</div>
+      <div class="compare-item"><span class="icon">✗</span> Reviews sit ignored for days. Google notices. Ranking drops.</div>
+      <div class="compare-item"><span class="icon">✗</span> Website visitor has a question at 9pm. Bounces. Ad spend wasted.</div>
+      <div class="compare-item"><span class="icon">✗</span> DM comes in. You reply 6 hours later. They already booked someone else.</div>
+      <div class="compare-item"><span class="icon">✗</span> No idea how many leads came in, where they came from, or what happened.</div>
+    </div>
+    <div class="compare-card after">
+      <div class="compare-label">With ourview</div>
+      <div class="compare-item"><span class="icon">✓</span> Missed call → text back in 4 seconds. Lead stays warm.</div>
+      <div class="compare-item"><span class="icon">✓</span> New review → professional response posted instantly. Stars protected.</div>
+      <div class="compare-item"><span class="icon">✓</span> Website visitor → AI answers questions, captures their info. Lead saved.</div>
+      <div class="compare-item"><span class="icon">✓</span> DM arrives → auto-replied in seconds. Conversation started.</div>
+      <div class="compare-item"><span class="icon">✓</span> 1st of the month → full report in your inbox. You always know your numbers.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-sep">
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how-it-works">
+  <div class="section-eyebrow">How it works</div>
+  <h2 class="section-title">Set it up once.<br>Never think about it again.</h2>
+  <p class="section-sub" style="margin-bottom: 36px;">No technical knowledge needed. We handle the setup.</p>
+  <div class="how-grid">
+    <div class="how-step">
+      <div class="step-num">Step 01</div>
+      <h3>Sign up</h3>
+      <p>Join early access. No payment card required. Tell us your business name and we hold your spot.</p>
+    </div>
+    <div class="how-step">
+      <div class="step-num">Step 02</div>
+      <h3>We onboard you</h3>
+      <p>We collect your business info — hours, services, FAQs — and set everything up in under 24 hours.</p>
+    </div>
+    <div class="how-step">
+      <div class="step-num">Step 03</div>
+      <h3>AI goes live</h3>
+      <p>Missed calls get texted. Reviews get answered. Your website chat goes live. DMs start getting replies.</p>
+    </div>
+    <div class="how-step">
+      <div class="step-num">Step 04</div>
+      <h3>You get reports</h3>
+      <p>Every 1st of the month, a full breakdown of what was captured, answered, and handled. Zero effort on your end.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="section-sep">
+
+<!-- STATS -->
+<section class="section">
+  <div class="section-eyebrow">The numbers</div>
+  <h2 class="section-title">Why this matters.</h2>
+  <p class="section-sub" style="margin-bottom: 36px;">These are the stats that make business owners stop scrolling.</p>
+  <div class="stats-grid">
+    <div class="stat-card"><strong>62%</strong><p>of calls to local businesses go unanswered. Every one is a lost lead.</p></div>
+    <div class="stat-card"><strong>78%</strong><p>of customers buy from whoever responds first. Not the cheapest. The fastest.</p></div>
+    <div class="stat-card"><strong>9%</strong><p>fewer customers for every half-star drop on Google. Reviews matter.</p></div>
+    <div class="stat-card"><strong>3x</strong><p>more revenue for businesses that respond to every lead within 5 minutes.</p></div>
+  </div>
+</section>
+
+<hr class="section-sep">
+
+<!-- PRICING -->
+<section class="section" id="pricing">
+  <div class="section-eyebrow">Pricing</div>
+  <h2 class="section-title">Less than one day of payroll.</h2>
+  <p class="section-sub" style="margin-bottom: 12px;">Early access members lock in 20% off these prices forever.</p>
+  <p style="font-size:13px; color:var(--gray); margin-bottom:40px;">No contracts. Cancel anytime.</p>
+  <div class="pricing-grid">
+    <!-- STARTER -->
+    <div class="plan">
+      <div class="plan-name">Starter</div>
+      <div class="plan-original">$97/mo at launch</div>
+      <div class="plan-price"><sup>$</sup>77<span>.60/mo</span></div>
+      <div class="savings">Save $19.40/mo forever</div>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">
+        <li>Missed call SMS text-back (4 sec)</li>
+        <li>24/7 AI website chat widget</li>
+        <li>Lead capture &amp; contact logging</li>
+        <li>Up to 500 interactions/month</li>
+        <li>Email support</li>
+      </ul>
+      <a href="https://ourview-earlyaccess.netlify.app" class="plan-btn">Get Early Access</a>
+    </div>
+    <!-- GROWTH -->
+    <div class="plan featured">
+      <div class="featured-badge">Most Popular</div>
+      <div class="plan-name">Growth</div>
+      <div class="plan-original">$147/mo at launch</div>
+      <div class="plan-price"><sup>$</sup>117<span>.60/mo</span></div>
+      <div class="savings">Save $29.40/mo forever</div>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">
+        <li>Everything in Starter</li>
+        <li>Automated DM responses (Instagram + TikTok)</li>
+        <li>Google + Yelp review auto-responses</li>
+        <li>Up to 2,000 interactions/month</li>
+        <li>Priority support</li>
+      </ul>
+      <a href="https://ourview-earlyaccess.netlify.app" class="plan-btn">Get Early Access</a>
+    </div>
+    <!-- PRO -->
+    <div class="plan">
+      <div class="plan-name">Pro</div>
+      <div class="plan-original">$197/mo at launch</div>
+      <div class="plan-price"><sup>$</sup>157<span>.60/mo</span></div>
+      <div class="savings">Save $39.40/mo forever</div>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">
+        <li>Everything in Growth</li>
+        <li>Monthly performance reports</li>
+        <li>Review request campaigns</li>
+        <li>Unlimited interactions</li>
+        <li>Dedicated onboarding call</li>
+      </ul>
+      <a href="https://ourview-earlyaccess.netlify.app" class="plan-btn">Get Early Access</a>
+    </div>
+  </div>
+</section>
+
+<hr class="section-sep">
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="section-eyebrow">FAQ</div>
+  <h2 class="section-title">Common questions.</h2>
+  <div class="faq-list" style="margin-top: 40px;">
+    <div class="faq-item">
+      <div class="faq-q">Do I need to be tech-savvy to use ourview?</div>
+      <div class="faq-a">Not at all. We handle the entire setup for you. All you need to do is share some basic info about your business — hours, services, FAQs — and we take it from there. If you can read an email, you can use ourview.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Will customers know they're talking to AI?</div>
+      <div class="faq-a">The AI responds naturally and professionally. Most customers won't notice a difference. You can customize the tone and style to match your brand, and the AI is trained specifically on your business's information.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What happens to my existing phone number?</div>
+      <div class="faq-a">You keep your number. We either set up call forwarding to our system, or give you a tracking number that routes calls the same way. Either way, your number doesn't change for your customers.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What platforms does the DM automation support?</div>
+      <div class="faq-a">Growth and Pro plans include Instagram and TikTok. Both require a business/creator account on each platform. Setup takes about 10 minutes once you're onboarded.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can I cancel anytime?</div>
+      <div class="faq-a">Yes. No contracts, no cancellation fees. Cancel before your next billing date and you won't be charged again. Your early access pricing is yours to keep as long as you stay subscribed.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What does early access mean?</div>
+      <div class="faq-a">Early access members are the first to get access when we launch, and they lock in 20% off the standard pricing forever — even after we raise prices publicly. You pay the early access rate for as long as you're a customer.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-sep">
+
+<!-- FINAL CTA -->
+<section class="cta-section">
+  <h2>Ready to let AI run<br>your business?</h2>
+  <p>Join early access today. No payment required. Lock in 20% off for life before we launch publicly.</p>
+  <a href="https://ourview-earlyaccess.netlify.app" class="btn-primary" style="font-size:16px; padding: 16px 36px;">Get Early Access — It's Free to Join →</a>
+  <p style="margin-top: 16px; font-size: 13px; color: var(--gray);">No payment card. No commitment. Cancel anytime.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="logo" style="font-size:16px;">our<span style="color:var(--purple);">view</span>.io</a>
+  <p style="font-size:13px; color:var(--gray);">© 2026 ourview.io. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="https://ourview-earlyaccess.netlify.app">Early Access</a>
+    <a href="mailto:vincearbit@gmail.com">Contact</a>
+  </div>
+</footer>
+
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>
